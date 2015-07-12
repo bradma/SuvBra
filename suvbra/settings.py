@@ -5,11 +5,11 @@ from os.path import join
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 TEMPLATE_DIRS = (
-	join(BASE_DIR, 'templates')
+	join(BASE_DIR, 'templates'),
 )
 
 STATICFILES_DIRS = (
-	join(BASE_DIR, 'media')
+	join(BASE_DIR, 'media'),
 )
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -59,8 +59,8 @@ WSGI_APPLICATION = 'suvbra.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.mongodb_engine',
-        'NAME': '',,
+        'ENGINE': '',
+        'NAME': '',
 	'USER' : '',
 	'PASSWORD' : '',
 	'HOST' : '',
