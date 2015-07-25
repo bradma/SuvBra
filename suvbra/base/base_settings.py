@@ -5,9 +5,11 @@ from os.path import join
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+"""
 TEMPLATE_DIRS = (
 	join(BASE_DIR, 'templates'),
 )
+"""
 
 STATICFILES_DIRS = (
 	join(BASE_DIR, 'media'),
@@ -39,7 +41,7 @@ LOCAL_APPS = (
 )
 
 THIRD_PARTY_APPS = (
-
+    'bootstrap3',
 )
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
@@ -57,6 +59,17 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'suvbra.urls'
 
 WSGI_APPLICATION = 'suvbra.wsgi.application'
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': ['/vagrant/Projects/SuvBra/templates/'],
+        'APP_DIRS': False,
+        'OPTIONS': {
+            # ... some options here ...
+        },
+    },
+]
 
 DATABASES = {
     'default': {
