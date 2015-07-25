@@ -1,3 +1,13 @@
 from django.db import models
 
-# Create your models here.
+class customer(models.Model):
+	first_name = models.CharField(max_length=12)
+	last_name = models.CharField(max_length=12)
+	home_phone = models.IntegerField(blank=True)
+	cell_phone = models.IntegerField(blank=True)
+	email = models.EmailField(max_length=25, blank=True)
+	full_address = models.CharField(max_length=25)
+	alt_address = models.CharField(max_length=25, blank=True)
+	city = models.CharField(max_length=12)
+	state = models.CharField(max_length=12)
+	zip_code = models.IntegerField()
