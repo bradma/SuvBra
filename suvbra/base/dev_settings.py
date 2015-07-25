@@ -5,21 +5,13 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-if 'test' in sys.argv:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        },
-    }
-else:
-    DATABASES = {
+DATABASES = {
     'default': {
-        'ENGINE': '',
-        'NAME': '',
-    'USER' : '',
-    'PASSWORD' : '',
-    'HOST' : '',
-    'PORT' : '',
+       'ENGINE': 'django.db.backends.postgresql_psycopg2',
+       'NAME': 'SuvBra_DB',
+       'USER' : 'Admin',
+       'PASSWORD' : '[neTz,7F',
+       'HOST' : 'localhost',
+       'PORT' : '',
     }
 }

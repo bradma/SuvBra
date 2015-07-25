@@ -5,12 +5,6 @@ from os.path import join
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-"""
-TEMPLATE_DIRS = (
-	join(BASE_DIR, 'templates'),
-)
-"""
-
 STATICFILES_DIRS = (
 	join(BASE_DIR, 'media'),
 )
@@ -73,12 +67,12 @@ TEMPLATES = [
 
 DATABASES = {
     'default': {
-        'ENGINE': '',
-        'NAME': '',
-	'USER' : '',
-	'PASSWORD' : '',
-	'HOST' : '',
-	'PORT' : '',
+       'ENGINE': 'django.db.backends.postgresql_psycopg2',
+       'NAME': 'SuvBra_DB',
+       'USER' : 'Admin',
+       'PASSWORD' : '[neTz,7F',
+       'HOST' : '',
+       'PORT' : '',
     }
 }
 
