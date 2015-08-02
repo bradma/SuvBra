@@ -1,21 +1,26 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import View
 
 from sb.models import customer
 from sb.forms import customer_form
 
-class first_view(TemplateView):
+class first_view(View):
     template_name = 'suvbra/home.html'
-    model = customer
+    form_class = customer_form
 
-    def post(self, *args, **kwags):
-        context = self.get_context_data()
-        if context['form'].is_valid():
-            print ('Worked')
+    def get(self, request, *args, **kwags):
+        context = {
+            'form': self.form_class(),
+            'customer_info': customer.objects.all(),
+        }
+        return render(request, self.template_name, context)
 
-    def get_context_data(self, **kwargs):
-        context = super(first_view, self).get_context_data(**kwargs)
-        context['customer_info'] = customer.objects.all()
-        form = customer_form(self.request.POST or None)
-        context['form'] = form
-        return context
+    def post(self, request, *args, **kwargs):
+        context = {
+            'form': self.form_class(),
+            'customer_info': customer.objects.all(),
+        }
+        form = self.form_class(self.request.POST or None)
+        if form.is_valid():
+            form.save()
+        return render(request, self.template_name, context)
