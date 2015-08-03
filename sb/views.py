@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import View
+from django.views.generic import View, DetailView
 
 from sb.models import customer
 from sb.forms import customer_form
@@ -24,3 +24,6 @@ class first_view(View):
         if form.is_valid():
             form.save()
         return render(request, self.template_name, context)
+
+class customer_detail(DetailView):
+    template_name = 'suvbra/cus_detail.html'
