@@ -1,0 +1,10 @@
+{% load bootstrap3 %}
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+    {% block bodycontent %}{% endblock %}
+</body>

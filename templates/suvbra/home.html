@@ -1,35 +1,33 @@
-{# Load the tag library #}
+{% extends 'suvbra/base.html' %}
 {% load bootstrap3 %}
-
-{# Load CSS and JavaScript #}
-{% bootstrap_css %}
-{% bootstrap_javascript %}
-
-{# Display django.contrib.messages as Bootstrap alerts #}
-
-<div class = "container">
-    <div class="row">
-        <div class="col-md-6">
-        <form action="#" method="post" class="form">
-          {% csrf_token %}
-          {% bootstrap_form form %}
-          {% buttons %}
-            <button type="submit" class="btn btn-primary">
-              {% bootstrap_icon "star" %} Submit
-            </button>
-          {% endbuttons %}
-        </form>
-        </div>
-    </div>
-    {% if customer_info %}
-        {% for customers in customer_info %}
-            <div>
-                <p>{{ customers }}</p>
+{% block title %}Customer Entry{% endblock %}
+{% block bodycontent %}
+    <div class = "container">
+        <div class="row">
+            <div class="col-md-6">
+            <form action="#" method="post" class="form">
+              {% csrf_token %}
+              {% bootstrap_form form %}
+              {% buttons %}
+                <button type="submit" class="btn btn-primary">
+                  {% bootstrap_icon "star" %} Submit
+                </button>
+              {% endbuttons %}
+            </form>
             </div>
-        {% endfor %}
-    {% else %}
-        <div>
-            <p>No Current Customers</p>
         </div>
-    {% endif %}
-</div>
+        {% if customer_info %}
+            <div>
+            <ul>
+            {% for customers in customer_info %}
+                <li>{{ customers.first_name }}</li>
+            {% endfor %}
+            </ul>
+            </div>
+        {% else %}
+            <div>
+                <p>No Current Customers</p>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
