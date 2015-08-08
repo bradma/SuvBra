@@ -54,3 +54,19 @@ class test_my_views(TestCase):
         request = self.factory.get(url)
         response = first_view.as_view()(request)
         self.assertEqual(response.template_name[0], 'suvbra/home.html')
+
+    def test_customer_detail__status_ok(self):
+        """ Test view customer_detail is returning 200 """
+
+        url = reverse('test:customer-detail', kwargs={'pk': 1})
+        request = self.factory.get(url)
+        response = customer_detail.as_view()(request)
+        self.assertEqual(response.status_code, 200)
+
+    def test_customer_detail__template_correct(self):
+        """ Test view is looking at correct template """
+
+        url = reverse('test:customer-detail', kwargs={'pk': 1})
+        request = self.factory.get(url)
+        response = customer_detail.as_view()(request)
+        self.assertEqual(response.template_name[0], 'suvbra/cus_detail.html')
