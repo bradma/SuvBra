@@ -27,3 +27,4 @@ class first_view(View):
 
 class customer_detail(DetailView):
     template_name = 'suvbra/cus_detail.html'
+    model = customer
