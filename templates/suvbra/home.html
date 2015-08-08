@@ -20,7 +20,7 @@
             <div>
             <ul>
             {% for customers in customer_info %}
-                <li>{{ customers.first_name }}</li>
+                <li><a href="{% url 'test:customer-detail' customers.id %}">{{ customers.first_name }}</a></li>
             {% endfor %}
             </ul>
             </div>

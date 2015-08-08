@@ -1,11 +1,40 @@
-{% extends 'base.html' %}
+{% extends 'suvbra/base.html' %}
 {% load bootstrap3 %}
 {% block title %}Customer Detail{% endblock %}
 {% block bodycontent %}
     <div class = "container">
         <div class="row">
-            <div class="col-md-6">
-
+            <div class="jumbotron">
+                <h2>Information For Customer ID: {{ object.pk }}</h2>
+                <p>First Name: {{ object.first_name }}</p>
+                <p>Last Name: {{ object.last_name }}</p>
+                {% if object.home_phone %}
+                    <p>Home Phone: {{ object.home_phone }}</p>
+                {% else %}
+                    <p>Home Phone: - </p>
+                {% endif %}
+                {% if object.cell_phone %}
+                    <p>Cell Phone: {{ object.cell_phone }}</p>
+                {% else %}
+                    <p>Cell Phone: - </p>
+                {% endif %}
+                {% if object.email %}
+                    <p>Email: {{ object.email }}</p>
+                {% else %}
+                    <p>Email: - </p>
+                {% endif %}
+                <p>Full Address: {{ object.full_address }}</p>
+                {% if object.alt_address %}
+                    <p>Alt Address: {{ object.alt_address }}</p>
+                {% else %}
+                    <p>Alt Address: - </p>
+                {% endif %}
+                <p>City: {{ object.city }}</p>
+                <p>State: {{ object.state }}</p>
+                <p>Zip Code: {{ object.zip_code }}</p>
+                <a href="{% url 'test:concept_1' %}"
+                    <button type="button" class="btn btn-lg btn-link">Back</button>
+                </a>
             </div>
         </div>
     </div>
