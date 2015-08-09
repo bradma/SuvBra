@@ -36,6 +36,7 @@ LOCAL_APPS = (
 
 THIRD_PARTY_APPS = (
     'bootstrap3',
+    'rest_framework',
 )
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
@@ -49,6 +50,13 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
+"""
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
+"""
 
 ROOT_URLCONF = 'suvbra.urls'
 
@@ -57,7 +65,10 @@ WSGI_APPLICATION = 'suvbra.wsgi.application'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/vagrant/Projects/SuvBra/templates/'],
+        'DIRS': [
+            '/vagrant/Projects/SuvBra/templates/',
+            '/home/vagrant/.virtualenvs/suvbra/lib/python3.4/site-packages/rest_framework/templates/'
+        ],
         'APP_DIRS': False,
         'OPTIONS': {
             # ... some options here ...

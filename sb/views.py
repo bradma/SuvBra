@@ -1,6 +1,8 @@
 from django.shortcuts import render
+from rest_framework import viewsets
 from django.views.generic import View, DetailView
 
+from sb.serializers import CustSerializer
 from sb.models import customer
 from sb.forms import customer_form
 
@@ -28,3 +30,7 @@ class first_view(View):
 class customer_detail(DetailView):
     template_name = 'suvbra/cus_detail.html'
     model = customer
+
+class cust_viewset(viewsets.ReadOnlyModelViewSet):
+    queryset = customer.objects.all()
+    serializer_class = CustSerializer
