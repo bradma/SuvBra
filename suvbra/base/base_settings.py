@@ -16,6 +16,10 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
+#Permission redirection
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = ''
+
 ALLOWED_HOSTS = []
 
 
@@ -69,9 +73,14 @@ TEMPLATES = [
             '/vagrant/Projects/SuvBra/templates/',
             '/home/vagrant/.virtualenvs/suvbra/lib/python3.4/site-packages/rest_framework/templates/'
         ],
-        'APP_DIRS': False,
+        'APP_DIRS': True,
         'OPTIONS': {
-            # ... some options here ...
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages'
+            ]
         },
     },
 ]

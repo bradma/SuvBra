@@ -1,5 +1,9 @@
 from django.shortcuts import render
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from rest_framework import viewsets
+from django.core.urlresolvers import reverse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import View, DetailView
 
 from sb.serializers import CustSerializer
@@ -15,36 +19,22 @@ class login_view(View):
         return render(request, self.template_name, context)
 
     def post(self, request):
-        print ('Pass for Now')
-
-"""
-class main_login(View):
-    template_name = 'login.html'
-    form_class = my_login
-
-    def get(self, request, *args, **kwargs):
-        context = {'form': self.form_class()}
-        return render(request, self.template_name, context)
-
-    def post (self, request, *args, **kwargs):
         context = {'form': self.form_class()}
         form = self.form_class(self.request.POST or None)
         if form.is_valid():
-            _username = request.POST['username']
-            _password = request.POST['password']
-            userlogin = authenticate(username=_username, password=_password)
-            if userlogin:
-                if userlogin.is_active:
-                    login(request, userlogin)
-                    return HttpResponseRedirect(reverse('main'))
+            this_user = form['user_name'].data
+            this_pass = form['user_pass'].data
+            get_user_logged = authenticate(username=this_user, password=this_pass)
+            if get_user_logged:
+                if get_user_logged.is_active:
+                    login(request, get_user_logged)
+                    return HttpResponseRedirect(reverse('test:concept_1'))
                 else:
-                    return HttpResponse('Invalid')
+                    return HttpResponse('Account Disabled... ')
             else:
-                return HttpResponse('Invalid Username or Password')
-        return render(request, self.template_name, context)
-"""
-
-
+                return render(request, self.template_name, context)
+        else:
+            return render(request, self.template_name, context)
 
 class first_view(View):
     template_name = 'suvbra/home.html'
@@ -66,6 +56,11 @@ class first_view(View):
         if form.is_valid():
             form.save()
         return render(request, self.template_name, context)
+
+@login_required
+def main_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('login'))
 
 class customer_detail(DetailView):
     template_name = 'suvbra/cus_detail.html'
